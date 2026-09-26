@@ -1,0 +1,39 @@
+-- SkillXDatabase.sq — SQLDelight offline cache schema
+-- This is for local caching ONLY; source-of-truth is always the server.
+
+CREATE TABLE IF NOT EXISTS CachedUser (
+    id TEXT NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    points INTEGER NOT NULL DEFAULT 0,
+    teachSkills TEXT NOT NULL DEFAULT '',
+    learnSkills TEXT NOT NULL DEFAULT '',
+    lastSyncedAt INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS CachedSkillMatch (
+    uid TEXT NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    matchedSkill TEXT NOT NULL,
+    teachSkills TEXT NOT NULL DEFAULT '',
+    learnSkills TEXT NOT NULL DEFAULT '',
+    lastSyncedAt INTEGER NOT NULL DEFAULT 0
+);
+
+getUser:
+SELECT * FROM CachedUser WHERE id = ?;
+
+insertOrReplaceUser:
+INSERT OR REPLACE INTO CachedUser(id, name, email, points, teachSkills, learnSkills, lastSyncedAt)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+getAllMatches:
+SELECT * FROM CachedSkillMatch;
+
+insertOrReplaceMatch:
+INSERT OR REPLACE INTO CachedSkillMatch(uid, name, email, matchedSkill, teachSkills, learnSkills, lastSyncedAt)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+clearMatches:
+DELETE FROM CachedSkillMatch;

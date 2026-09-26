@@ -1,0 +1,34 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build
+dist/
+build/
+lib/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Firebase
+.firebase/
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+
+# Test coverage
+coverage/
+.nyc_output/

@@ -1,1 +1,13 @@
+# Build
 /build
+
+# Firebase / Google Services (contains API keys)
+google-services.json
+
+# Android signing
+*.keystore
+*.jks
+keystore.properties
+
+# Local properties
+local.properties

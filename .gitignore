@@ -1,15 +1,46 @@
-*.iml
+# Gradle
 .gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+build/
+*.iml
+
+# Local properties (contains SDK paths, signing configs)
 local.properties
+
+# IDE
+.idea/
+*.iml
+
+# macOS
+.DS_Store
+
+# OS
+Thumbs.db
+
+# Kotlin Multiplatform
+*.klib
+
+# Test reports (root-level)
+test-results/
+reports/
+
+# Firebase / Google Services (contains API keys)
+**/google-services.json
+**/GoogleService-Info.plist
+
+# Android signing
+*.keystore
+*.jks
+keystore.properties
+
+# Secrets / credentials
+**/*.pem
+**/*.p12
+**/*.cer
+**/secrets.*
+**/credentials.*
+**/service-account*.json
+
+# Environment
+.env
+.env.local
+.env.*.local

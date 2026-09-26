@@ -1,0 +1,29 @@
+# Gradle
+.gradle
+build/
+*.iml
+
+# Local properties
+local.properties
+
+# IDE
+.idea/
+*.iml
+
+# Kotlin Multiplatform
+*.klib
+**/build/
+**/.gradle/
+
+# Compose Multiplatform
+**/composeResClass/
+
+# SQLDelight
+**/generated/
+
+# Test reports
+**/test-results/
+**/reports/
+
+# macOS
+.DS_Store
