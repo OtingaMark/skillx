@@ -1,6 +1,6 @@
 package com.skillx.features.users.data.mapper
 
-import com.skillx.features.users.data.remote.dto.UserProfileDto
+import com.skillx.features.users.data.dto.UserProfileDto
 import com.skillx.features.users.domain.model.UserProfile
 
 object UserMapper {

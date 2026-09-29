@@ -108,7 +108,7 @@ fun RatingBar(
                     else -> "☆"
                 },
                 style = MaterialTheme.typography.titleLarge,
-                color = if (filled || halfFilled) com.skillx.designsystem.theme.SkillXWarning
+                color = if (filled || halfFilled) com.skillx.designsystem.theme.SkillXAccent
                 else MaterialTheme.colorScheme.outline
             )
         }
@@ -132,7 +132,7 @@ fun InteractiveRatingBar(
                 Text(
                     text = if (starIndex <= selectedRating) "★" else "☆",
                     style = MaterialTheme.typography.headlineMedium,
-                    color = if (starIndex <= selectedRating) com.skillx.designsystem.theme.SkillXWarning
+                    color = if (starIndex <= selectedRating) com.skillx.designsystem.theme.SkillXAccent
                     else MaterialTheme.colorScheme.outline
                 )
             }

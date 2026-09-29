@@ -1,5 +1,5 @@
 package com.skillx.features.matching.data.mapper
-import com.skillx.features.matching.data.remote.dto.SkillMatchDto
+import com.skillx.features.matching.data.dto.SkillMatchDto
 import com.skillx.features.matching.domain.model.SkillMatch
 
 object SkillMatchMapper {

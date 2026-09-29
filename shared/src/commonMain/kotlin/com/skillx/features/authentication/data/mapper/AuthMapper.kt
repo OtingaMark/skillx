@@ -1,6 +1,6 @@
 package com.skillx.features.authentication.data.mapper
 
-import com.skillx.features.authentication.data.remote.dto.AuthResponseDto
+import com.skillx.features.authentication.data.dto.AuthResponseDto
 import com.skillx.features.authentication.domain.model.AuthSession
 
 /**

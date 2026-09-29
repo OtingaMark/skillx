@@ -6,14 +6,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 /**
- * SkillX typography — synchronized with brand design spec (Inter font).
+ * SkillX typography — matches the mockup's "Typography" panel ("Inter or similar"; the
+ * platform default sans-serif is used since no Inter font asset ships with the app).
  *
- * Display   32px / Bold
- * Heading   24px / Semibold
- * Title     20px / Semibold
- * Body      16px / Regular
- * Label     14px / Medium
- * Caption   12px / Regular
+ * Headings  24 / 20 / 18 / 16  → headlineLarge / headlineMedium / headlineSmall+titleLarge / titleMedium
+ * Body      16 / 14 / 12       → bodyLarge / bodyMedium / bodySmall
+ * Caption   12                 → labelMedium / labelSmall
  */
 val SkillXTypography = Typography(
     // Display → 32px/Bold
@@ -35,30 +33,30 @@ val SkillXTypography = Typography(
         lineHeight = 36.sp,
         letterSpacing = 0.sp
     ),
-    // Heading → 24px/SemiBold
+    // Headings → 24 / 20 / 18
     headlineLarge = TextStyle(
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 28.sp,
-        lineHeight = 36.sp,
-        letterSpacing = 0.sp
-    ),
-    headlineMedium = TextStyle(
         fontWeight = FontWeight.SemiBold,
         fontSize = 24.sp,
         lineHeight = 32.sp,
         letterSpacing = 0.sp
     ),
-    headlineSmall = TextStyle(
+    headlineMedium = TextStyle(
         fontWeight = FontWeight.SemiBold,
         fontSize = 20.sp,
         lineHeight = 28.sp,
         letterSpacing = 0.sp
     ),
-    // Title → 20px/SemiBold
+    headlineSmall = TextStyle(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 18.sp,
+        lineHeight = 26.sp,
+        letterSpacing = 0.sp
+    ),
+    // Title → 18 / 16 / 14
     titleLarge = TextStyle(
         fontWeight = FontWeight.SemiBold,
-        fontSize = 20.sp,
-        lineHeight = 28.sp,
+        fontSize = 18.sp,
+        lineHeight = 26.sp,
         letterSpacing = 0.sp
     ),
     titleMedium = TextStyle(
@@ -92,7 +90,7 @@ val SkillXTypography = Typography(
         lineHeight = 16.sp,
         letterSpacing = 0.4.sp
     ),
-    // Label → 14px/Medium
+    // Label / Caption → 14 / 12 / 12
     labelLarge = TextStyle(
         fontWeight = FontWeight.Medium,
         fontSize = 14.sp,
@@ -107,7 +105,7 @@ val SkillXTypography = Typography(
     ),
     labelSmall = TextStyle(
         fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
+        fontSize = 12.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.5.sp
     )

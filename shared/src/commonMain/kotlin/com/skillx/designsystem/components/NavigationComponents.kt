@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.skillx.core.extensions.toOneDecimalString
 
 /**
  * Bottom navigation bar matching the design spec — Home, Search, Buy Points, Profile.
@@ -129,7 +130,7 @@ fun RatingCard(
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
         RatingBar(rating = rating)
         Spacer(modifier = Modifier.width(8.dp))
-        Text("${String.format("%.1f", rating)}", style = MaterialTheme.typography.titleMedium)
+        Text(rating.toOneDecimalString(), style = MaterialTheme.typography.titleMedium)
         if (totalRatings > 0) {
             Spacer(modifier = Modifier.width(4.dp))
             Text("($totalRatings)", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)

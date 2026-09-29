@@ -28,6 +28,11 @@ class AppNavigator {
         return true
     }
 
+    /** Swaps the current screen without growing the back stack (e.g. Sign Up ⇄ Login). */
+    fun replaceCurrent(route: SkillXRoute) {
+        _currentRoute.value = route
+    }
+
     fun navigateAndClearStack(route: SkillXRoute) {
         backStack.clear()
         _currentRoute.value = route

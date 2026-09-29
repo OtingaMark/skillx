@@ -1,6 +1,8 @@
 package com.skillx.platform
 
-class IosPlatform {
-    val name: String = "iOS"
-    val version: String = "17.0" // Placeholder — use UIDevice in actual implementation
+import platform.UIKit.UIDevice
+
+actual class Platform {
+    actual val name: String = "iOS"
+    actual val version: String = UIDevice.currentDevice.systemVersion
 }

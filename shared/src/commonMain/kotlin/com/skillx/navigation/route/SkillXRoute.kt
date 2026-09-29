@@ -11,6 +11,7 @@ sealed class SkillXRoute {
     data object Welcome : SkillXRoute()
     data object SignUp : SkillXRoute()
     data object Login : SkillXRoute()
+    data object Onboarding : SkillXRoute()
     data object Home : SkillXRoute()
     data object Profile : SkillXRoute()
     data object EditProfile : SkillXRoute()

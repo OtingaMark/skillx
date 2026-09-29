@@ -3,10 +3,10 @@ package com.skillx.features.users.data.repository
 import com.skillx.core.error.AppError
 import com.skillx.core.error.NetworkError
 import com.skillx.core.result.AppResult
-import com.skillx.features.users.data.mapper.UserMapper
+import com.skillx.features.users.data.mapper.UserProfileMapper
 import com.skillx.features.users.data.remote.UserApi
-import com.skillx.features.users.data.remote.dto.UpdateProfileRequestDto
-import com.skillx.features.users.data.remote.dto.UserProfileDto
+import com.skillx.features.users.data.dto.UpdateProfileRequestDto
+import com.skillx.features.users.data.dto.UserProfileDto
 import com.skillx.features.users.domain.model.UserProfile
 import com.skillx.features.users.domain.repository.UserRepository
 import com.skillx.network.error.ApiErrorMapper
@@ -22,7 +22,7 @@ class UserRepositoryImpl(
         return try {
             val response = userApi.getCurrentUser()
             if (response.status.isSuccess()) {
-                AppResult.Success(UserMapper.toDomain(response.body<UserProfileDto>()))
+                AppResult.Success(UserProfileMapper.toDomain(response.body<UserProfileDto>()))
             } else {
                 val err = try { response.body<ApiErrorResponse>() } catch (_: Exception) { null }
                 AppResult.Error(ApiErrorMapper.fromHttpStatus(response.status.value, err))
@@ -36,7 +36,7 @@ class UserRepositoryImpl(
         return try {
             val response = userApi.getUserById(userId)
             if (response.status.isSuccess()) {
-                AppResult.Success(UserMapper.toDomain(response.body<UserProfileDto>()))
+                AppResult.Success(UserProfileMapper.toDomain(response.body<UserProfileDto>()))
             } else {
                 val err = try { response.body<ApiErrorResponse>() } catch (_: Exception) { null }
                 AppResult.Error(ApiErrorMapper.fromHttpStatus(response.status.value, err))
@@ -56,7 +56,7 @@ class UserRepositoryImpl(
                 UpdateProfileRequestDto(name, teachSkills, learnSkills)
             )
             if (response.status.isSuccess()) {
-                AppResult.Success(UserMapper.toDomain(response.body<UserProfileDto>()))
+                AppResult.Success(UserProfileMapper.toDomain(response.body<UserProfileDto>()))
             } else {
                 val err = try { response.body<ApiErrorResponse>() } catch (_: Exception) { null }
                 AppResult.Error(ApiErrorMapper.fromHttpStatus(response.status.value, err))

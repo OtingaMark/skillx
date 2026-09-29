@@ -44,3 +44,6 @@ keystore.properties
 .env
 .env.local
 .env.*.local
+
+# Local-only dev credentials (Firestore emulator, etc.) — never real, never committed
+server/.localdev/

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SkillX" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/skillx_primary</item>
+        <item name="android:colorPrimaryDark">@color/skillx_primary_dark</item>
+        <item name="android:windowBackground">@color/skillx_background</item>
+    </style>
+</resources>

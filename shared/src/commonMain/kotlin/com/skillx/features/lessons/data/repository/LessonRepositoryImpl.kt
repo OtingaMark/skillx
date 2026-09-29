@@ -4,8 +4,8 @@ import com.skillx.core.error.AppError
 import com.skillx.core.error.NetworkError
 import com.skillx.core.result.AppResult
 import com.skillx.features.lessons.data.remote.LessonApi
-import com.skillx.features.lessons.data.remote.dto.CreateLessonRequestDto
-import com.skillx.features.lessons.data.remote.dto.LessonRequestDto
+import com.skillx.features.lessons.data.dto.CreateLessonRequestDto
+import com.skillx.features.lessons.data.dto.LessonRequestResponseDto
 import com.skillx.features.lessons.domain.model.LessonRequest
 import com.skillx.features.lessons.domain.model.LessonStatus
 import com.skillx.features.lessons.domain.repository.LessonRepository
@@ -18,7 +18,7 @@ class LessonRepositoryImpl(
     private val lessonApi: LessonApi
 ) : LessonRepository {
 
-    private fun LessonRequestDto.toDomain() = LessonRequest(
+    private fun LessonRequestResponseDto.toDomain() = LessonRequest(
         id = id, requesterId = requesterId, teacherId = teacherId,
         requesterName = requesterName, teacherName = teacherName,
         skill = skill, status = LessonStatus.fromString(status)
@@ -28,7 +28,7 @@ class LessonRepositoryImpl(
         return try {
             val response = lessonApi.createLessonRequest(CreateLessonRequestDto(teacherId, skill))
             if (response.status.isSuccess()) {
-                AppResult.Success(response.body<LessonRequestDto>().toDomain())
+                AppResult.Success(response.body<LessonRequestResponseDto>().toDomain())
             } else {
                 val err = try { response.body<ApiErrorResponse>() } catch (_: Exception) { null }
                 AppResult.Error(ApiErrorMapper.fromHttpStatus(response.status.value, err))
@@ -42,7 +42,7 @@ class LessonRepositoryImpl(
         return try {
             val response = lessonApi.getMyLessonRequests()
             if (response.status.isSuccess()) {
-                AppResult.Success(response.body<List<LessonRequestDto>>().map { it.toDomain() })
+                AppResult.Success(response.body<List<LessonRequestResponseDto>>().map { it.toDomain() })
             } else {
                 val err = try { response.body<ApiErrorResponse>() } catch (_: Exception) { null }
                 AppResult.Error(ApiErrorMapper.fromHttpStatus(response.status.value, err))
@@ -56,7 +56,7 @@ class LessonRepositoryImpl(
         return try {
             val response = lessonApi.acceptLessonRequest(lessonId)
             if (response.status.isSuccess()) {
-                AppResult.Success(response.body<LessonRequestDto>().toDomain())
+                AppResult.Success(response.body<LessonRequestResponseDto>().toDomain())
             } else {
                 val err = try { response.body<ApiErrorResponse>() } catch (_: Exception) { null }
                 AppResult.Error(ApiErrorMapper.fromHttpStatus(response.status.value, err))
@@ -70,7 +70,7 @@ class LessonRepositoryImpl(
         return try {
             val response = lessonApi.completeLesson(lessonId)
             if (response.status.isSuccess()) {
-                AppResult.Success(response.body<LessonRequestDto>().toDomain())
+                AppResult.Success(response.body<LessonRequestResponseDto>().toDomain())
             } else {
                 val err = try { response.body<ApiErrorResponse>() } catch (_: Exception) { null }
                 AppResult.Error(ApiErrorMapper.fromHttpStatus(response.status.value, err))

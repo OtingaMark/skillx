@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="skillx_primary">#6566F1</color>
+    <color name="skillx_primary_dark">#4547C9</color>
+    <color name="skillx_background">#F8FAFC</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+</resources>

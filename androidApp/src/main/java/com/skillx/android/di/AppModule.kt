@@ -1,9 +1,12 @@
 package com.skillx.android.di
 
+import com.skillx.android.BuildConfig
 import com.skillx.features.authentication.data.remote.AuthApi
 import com.skillx.features.authentication.data.repository.AuthRepositoryImpl
 import com.skillx.features.authentication.domain.repository.AuthRepository
 import com.skillx.features.authentication.domain.usecase.*
+import com.skillx.features.authentication.platform.GoogleCredentialLauncher
+import com.skillx.features.authentication.platform.LinkedInOAuthLauncher
 import com.skillx.features.authentication.presentation.login.LoginViewModel
 import com.skillx.features.authentication.presentation.signup.SignUpViewModel
 import com.skillx.features.lessons.data.remote.LessonApi
@@ -15,6 +18,15 @@ import com.skillx.features.matching.data.repository.MatchRepositoryImpl
 import com.skillx.features.matching.domain.repository.MatchRepository
 import com.skillx.features.matching.domain.usecase.FindSkillMatchesUseCase
 import com.skillx.features.matching.domain.usecase.ObserveLiveMatchesUseCase
+import com.skillx.features.onboarding.data.remote.OnboardingApi
+import com.skillx.features.onboarding.data.repository.OnboardingRepositoryImpl
+import com.skillx.features.onboarding.domain.repository.OnboardingRepository
+import com.skillx.features.onboarding.presentation.availability.AvailabilityViewModel
+import com.skillx.features.onboarding.presentation.goals.GoalsViewModel
+import com.skillx.features.onboarding.presentation.learnskills.LearnSkillsViewModel
+import com.skillx.features.onboarding.presentation.proficiency.ProficiencyViewModel
+import com.skillx.features.onboarding.presentation.review.ReviewViewModel
+import com.skillx.features.onboarding.presentation.teachskills.TeachSkillsViewModel
 import com.skillx.features.payments.data.remote.PaymentApi
 import com.skillx.features.payments.data.repository.PaymentRepositoryImpl
 import com.skillx.features.payments.domain.repository.PaymentRepository
@@ -43,6 +55,7 @@ import com.skillx.features.users.data.repository.UserRepositoryImpl
 import com.skillx.features.users.domain.repository.UserRepository
 import com.skillx.features.users.domain.usecase.LoadCurrentUserUseCase
 import com.skillx.features.users.domain.usecase.UpdateProfileUseCase
+import com.skillx.features.users.presentation.home.HomeViewModel
 import com.skillx.navigation.navigator.AppNavigator
 import com.skillx.network.authentication.AuthTokenProvider
 import com.skillx.network.authentication.SettingsAuthTokenProvider
@@ -66,7 +79,7 @@ val appModule = module {
     // Settings & Network
     single { Settings() }
     single<AuthTokenProvider> { SettingsAuthTokenProvider(get()) }
-    single { ApiConfiguration() }
+    single { ApiConfiguration(baseUrl = BuildConfig.API_BASE_URL) }
     single { SkillXHttpClientFactory(get(), get()).create() }
 
     // API Clients
@@ -79,9 +92,11 @@ val appModule = module {
     single { RatingApi(get()) }
     single { ReportApi(get()) }
     single { PaymentApi(get()) }
+    single { OnboardingApi(get()) }
 
     // Repositories
     single<AuthRepository> { AuthRepositoryImpl(get(), get()) }
+    single<OnboardingRepository> { OnboardingRepositoryImpl(get()) }
     single<UserRepository> { UserRepositoryImpl(get()) }
     single<SkillRepository> { SkillRepositoryImpl(get()) }
     single<MatchRepository> { MatchRepositoryImpl(get()) }
@@ -94,8 +109,20 @@ val appModule = module {
     // Use Cases — Auth
     single { RegisterUserUseCase(get()) }
     single { LoginUserUseCase(get()) }
+    single { LoginWithGoogleUseCase(get()) }
+    single { LoginWithLinkedInUseCase(get()) }
     single { LogoutUserUseCase(get()) }
     single { ObserveAuthSessionUseCase(get()) }
+
+    // Social sign-in platform launchers
+    single { GoogleCredentialLauncher(get(), BuildConfig.GOOGLE_OAUTH_SERVER_CLIENT_ID) }
+    single {
+        LinkedInOAuthLauncher(
+            get(),
+            BuildConfig.LINKEDIN_OAUTH_CLIENT_ID,
+            BuildConfig.LINKEDIN_OAUTH_REDIRECT_URI
+        )
+    }
 
     // Use Cases — Users
     single { LoadCurrentUserUseCase(get()) }
@@ -133,6 +160,17 @@ val appModule = module {
     single { PurchasePointPackageUseCase(get()) }
 
     // ViewModels
-    single { SignUpViewModel(get(), get()) }
-    single { LoginViewModel(get(), get()) }
+    single { SignUpViewModel(get(), get(), get(), get(), get(), get(), get()) }
+    single { LoginViewModel(get(), get(), get(), get(), get(), get(), get()) }
+
+    // ViewModels — Onboarding
+    single { TeachSkillsViewModel(get(), get(), get()) }
+    single { LearnSkillsViewModel(get(), get(), get()) }
+    single { ProficiencyViewModel(get(), get()) }
+    single { GoalsViewModel(get(), get()) }
+    single { AvailabilityViewModel(get(), get()) }
+    single { ReviewViewModel(get(), get()) }
+
+    // ViewModels — Home
+    single { HomeViewModel(get(), get(), get()) }
 }

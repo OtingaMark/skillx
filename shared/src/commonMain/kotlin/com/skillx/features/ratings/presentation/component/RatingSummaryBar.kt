@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.skillx.core.extensions.toOneDecimalString
 import com.skillx.designsystem.components.RatingBar
 import com.skillx.designsystem.theme.*
 
@@ -15,7 +16,7 @@ fun RatingSummaryBar(averageRating: Double?, totalRatings: Int, modifier: Modifi
         Row(modifier = Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
             RatingBar(rating = averageRating)
             Spacer(modifier = Modifier.width(8.dp))
-            Text("${String.format("%.1f", averageRating)}", style = MaterialTheme.typography.titleMedium)
+            Text(averageRating.toOneDecimalString(), style = MaterialTheme.typography.titleMedium)
             Spacer(modifier = Modifier.width(4.dp))
             Text("($totalRatings ratings)", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }

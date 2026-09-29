@@ -31,7 +31,7 @@ sealed class AppResult<out T, out E> {
         is Error -> Error(error)
     }
 
-    inline fun <R> flatMap(transform: (T) -> AppResult<R, E>): AppResult<R, E> = when (this) {
+    inline fun <R> flatMap(transform: (T) -> AppResult<R, @UnsafeVariance E>): AppResult<R, E> = when (this) {
         is Success -> transform(data)
         is Error -> Error(error)
     }

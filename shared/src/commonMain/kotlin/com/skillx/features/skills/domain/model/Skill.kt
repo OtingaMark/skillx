@@ -1,10 +1,13 @@
 package com.skillx.features.skills.domain.model
 
+import com.skillx.core.identifiers.SkillId
+
 /**
  * Domain model representing a skill that can be taught or learned.
  */
 data class Skill(
-    val name: String
+    val name: String,
+    val id: SkillId = SkillId(name.trim().lowercase())
 ) {
     /**
      * Normalize the skill name for case-insensitive matching.

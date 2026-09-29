@@ -1,6 +1,6 @@
 package com.skillx.features.ratings.data.remote
 
-import com.skillx.features.ratings.data.remote.dto.SubmitRatingRequestDto
+import com.skillx.features.ratings.data.dto.SubmitRatingRequestDto
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*

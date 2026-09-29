@@ -1,6 +1,6 @@
 package com.skillx.features.lessons.data.remote
 
-import com.skillx.features.lessons.data.remote.dto.CreateLessonRequestDto
+import com.skillx.features.lessons.data.dto.CreateLessonRequestDto
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*

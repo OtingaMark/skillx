@@ -5,7 +5,9 @@ import com.skillx.core.error.NetworkError
 import com.skillx.core.result.AppResult
 import com.skillx.features.skills.data.remote.SaveSkillsRequestDto
 import com.skillx.features.skills.data.remote.SkillApi
+import com.skillx.features.skills.data.remote.SkillDto
 import com.skillx.features.skills.data.remote.SkillsResponseDto
+import com.skillx.features.skills.domain.model.Skill
 import com.skillx.features.skills.domain.repository.SkillRepository
 import com.skillx.network.error.ApiErrorMapper
 import com.skillx.network.error.ApiErrorResponse
@@ -41,6 +43,19 @@ class SkillRepositoryImpl(private val api: SkillApi) : SkillRepository {
             if (response.status.isSuccess()) { cachedTeach = teachSkills.toMutableList(); cachedLearn = learnSkills.toMutableList(); AppResult.Success(Unit) }
             else { val err = try { response.body<ApiErrorResponse>() } catch (_: Exception) { null }; AppResult.Error(ApiErrorMapper.fromHttpStatus(response.status.value, err)) }
         } catch (e: Exception) { AppResult.Error(NetworkError.Unknown(e.message ?: "Failed to save skills.")) }
+    }
+
+    override suspend fun search(query: String): List<Skill> {
+        return try {
+            val response = api.searchSkills(query)
+            if (response.status.isSuccess()) {
+                response.body<List<SkillDto>>().map { Skill(name = it.name, id = com.skillx.core.identifiers.SkillId(it.id)) }
+            } else {
+                emptyList()
+            }
+        } catch (e: Exception) {
+            emptyList()
+        }
     }
 
     private suspend fun loadSkills(): AppResult<Pair<List<String>, List<String>>, AppError> {

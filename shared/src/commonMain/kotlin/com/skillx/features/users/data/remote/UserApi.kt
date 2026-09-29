@@ -1,6 +1,6 @@
 package com.skillx.features.users.data.remote
 
-import com.skillx.features.users.data.remote.dto.UpdateProfileRequestDto
+import com.skillx.features.users.data.dto.UpdateProfileRequestDto
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*

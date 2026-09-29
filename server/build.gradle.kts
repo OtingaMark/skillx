@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.ktor)
     alias(libs.plugins.kotlin.serialization)
-    id("org.jetbrains.kotlin.jvm") version libs.versions.kotlin.get()
+    alias(libs.plugins.kotlin.jvm)
 }
 
 group = "com.skillx.server"
@@ -12,6 +12,12 @@ application {
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
+}
+
+configurations.all {
+    resolutionStrategy {
+        force("com.google.cloud:google-cloud-firestore:3.22.0")
+    }
 }
 
 dependencies {
@@ -34,6 +40,7 @@ dependencies {
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.guava)
 
     // DI
     implementation(libs.koin.core)
@@ -42,11 +49,21 @@ dependencies {
     // Firebase Admin
     implementation(libs.firebase.admin)
 
+    // Google Cloud Firestore (server-side, has Kotlin coroutines support)
+    implementation("com.google.cloud:google-cloud-firestore:3.22.0")
+
     // Jobs
     implementation(libs.jobrunr)
 
     // Security
     implementation(libs.bcrypt)
+    implementation(libs.argon2)
+    implementation(libs.stripe)
+    implementation(libs.jwks.rsa)
+    implementation(libs.angus.mail)
+
+    // Database
+    implementation(libs.hikaricp)
 
     // Logging
     implementation(libs.logback.classic)

@@ -10,6 +10,7 @@ import com.skillx.network.error.ApiErrorResponse
 import com.skillx.network.serialization.NetworkJson
 import io.ktor.client.*
 import io.ktor.client.call.*
+import io.ktor.client.engine.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.auth.*
 import io.ktor.client.plugins.auth.providers.*

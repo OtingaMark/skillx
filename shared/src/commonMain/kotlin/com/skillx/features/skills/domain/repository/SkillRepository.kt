@@ -2,6 +2,7 @@ package com.skillx.features.skills.domain.repository
 
 import com.skillx.core.error.AppError
 import com.skillx.core.result.AppResult
+import com.skillx.features.skills.domain.model.Skill
 
 /**
  * Skill repository interface.
@@ -18,4 +19,9 @@ interface SkillRepository {
         teachSkills: List<String>,
         learnSkills: List<String>
     ): AppResult<Unit, AppError>
+
+    /**
+     * Searches the skill catalog by name — used by the onboarding skill pickers.
+     */
+    suspend fun search(query: String): List<Skill>
 }

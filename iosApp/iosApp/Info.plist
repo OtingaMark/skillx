@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.skillx.app.oauth</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>skillx</string>
+			</array>
+		</dict>
+	</array>
+	<!-- Public OAuth client IDs (not secrets) — replace with real values from the
+	     Google Cloud Console / LinkedIn Developer Portal. Mirrors androidApp's
+	     GOOGLE_OAUTH_SERVER_CLIENT_ID / LINKEDIN_OAUTH_CLIENT_ID BuildConfig fields. -->
+	<key>GOOGLE_OAUTH_SERVER_CLIENT_ID</key>
+	<string></string>
+	<key>LINKEDIN_OAUTH_CLIENT_ID</key>
+	<string></string>
+	<!-- Server base URL — mirrors androidApp's API_BASE_URL BuildConfig field. iOS Simulator
+	     can reach the host machine directly at localhost; a physical iOS device needs the
+	     host's real LAN IP instead (simulator/device have no adb-reverse equivalent). -->
+	<key>API_BASE_URL</key>
+	<string>http://localhost:8080</string>
+</dict>
+</plist>

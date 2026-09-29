@@ -15,5 +15,5 @@ class PurchasePointsViewModel(private val loadPackages: LoadPointPackagesUseCase
         when (val b = loadBalance()) { is AppResult.Success -> _uiState.update { it.copy(currentBalance = b.data.points) }; is AppResult.Error -> {} }
         when (val p = loadPackages()) { is AppResult.Success -> _uiState.update { it.copy(packages = p.data, isLoading = false) }; is AppResult.Error -> _uiState.update { it.copy(isLoading = false, error = p.error.message) } }
     } }
-    fun purchase(productId: String) { _uiState.update { it.copy(isPurchasing = true) }; scope.launch { when (val r = purchasePackage(productId)) { is AppResult.Success -> _uiState.update { it.copy(isPurchasing = false, purchaseSuccess = true) }; is AppResult.Error -> _uiState.update { it.copy(isPurchasing = false, error = r.error.message) } }; load() } }
+    fun purchase(productId: String, transactionId: String, receipt: String) { _uiState.update { it.copy(isPurchasing = true) }; scope.launch { when (val r = purchasePackage(productId, transactionId, receipt)) { is AppResult.Success -> _uiState.update { it.copy(isPurchasing = false, purchaseSuccess = true) }; is AppResult.Error -> _uiState.update { it.copy(isPurchasing = false, error = r.error.message) } }; load() } }
 }

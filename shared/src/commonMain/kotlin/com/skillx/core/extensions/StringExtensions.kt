@@ -23,3 +23,14 @@ fun String.toSkillList(): List<String> {
 fun String.normalizeSkillName(): String {
     return this.trim().lowercase()
 }
+
+/**
+ * Formats a Double to one decimal place (e.g. "4.5") without java.util.Formatter,
+ * which isn't available on Kotlin/Native (iOS).
+ */
+fun Double.toOneDecimalString(): String {
+    val rounded = kotlin.math.round(this * 10)
+    val whole = (rounded / 10).toInt()
+    val decimal = kotlin.math.abs((rounded % 10).toInt())
+    return "$whole.$decimal"
+}

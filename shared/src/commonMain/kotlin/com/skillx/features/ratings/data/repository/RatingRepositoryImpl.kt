@@ -4,7 +4,7 @@ import com.skillx.core.error.AppError
 import com.skillx.core.error.NetworkError
 import com.skillx.core.result.AppResult
 import com.skillx.features.ratings.data.remote.RatingApi
-import com.skillx.features.ratings.data.remote.dto.*
+import com.skillx.features.ratings.data.dto.*
 import com.skillx.features.ratings.domain.model.Rating
 import com.skillx.features.ratings.domain.model.RatingSummary
 import com.skillx.features.ratings.domain.repository.RatingRepository

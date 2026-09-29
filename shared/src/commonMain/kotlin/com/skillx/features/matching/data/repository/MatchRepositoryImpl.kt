@@ -4,7 +4,7 @@ import com.skillx.core.error.AppError
 import com.skillx.core.error.NetworkError
 import com.skillx.core.result.AppResult
 import com.skillx.features.matching.data.remote.MatchApi
-import com.skillx.features.matching.data.remote.dto.SkillMatchDto
+import com.skillx.features.matching.data.dto.SkillMatchDto
 import com.skillx.features.matching.domain.model.SkillMatch
 import com.skillx.features.matching.domain.repository.MatchRepository
 import com.skillx.network.error.ApiErrorMapper
