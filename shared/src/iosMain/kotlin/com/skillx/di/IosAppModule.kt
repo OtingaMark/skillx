@@ -51,9 +51,6 @@ import com.skillx.features.ratings.domain.repository.RatingRepository
 import com.skillx.features.ratings.domain.usecase.LoadRatingSummaryUseCase
 import com.skillx.features.ratings.domain.usecase.SubmitRatingUseCase
 import com.skillx.features.reports.data.remote.ReportApi
-import com.skillx.features.reports.data.repository.ReportRepositoryImpl
-import com.skillx.features.reports.domain.repository.ReportRepository
-import com.skillx.features.reports.domain.usecase.SubmitReportUseCase
 import com.skillx.features.skills.data.remote.SkillApi
 import com.skillx.features.skills.data.repository.SkillRepositoryImpl
 import com.skillx.features.skills.domain.repository.SkillRepository
@@ -118,7 +115,7 @@ val iosAppModule = module {
     single<LessonRepository> { LessonRepositoryImpl(get()) }
     single<PointRepository> { PointRepositoryImpl(get()) }
     single<RatingRepository> { RatingRepositoryImpl(get()) }
-    single<ReportRepository> { ReportRepositoryImpl(get()) }
+    single<`ReportRepository.kt`> { `ReportRepositoryImpl.kt`(get()) }
     single<PaymentRepository> { PaymentRepositoryImpl(get()) }
     single<OnboardingRepository> { OnboardingRepositoryImpl(get()) }
 
@@ -164,7 +161,7 @@ val iosAppModule = module {
     single { LoadRatingSummaryUseCase(get()) }
 
     // Use Cases — Reports
-    single { SubmitReportUseCase(get()) }
+    single { `SubmitReportUseCase.kt`(get()) }
 
     // Use Cases — Payments
     single { LoadPointPackagesUseCase(get()) }
